@@ -1,0 +1,17 @@
+.form-select,
+.form-select:focus {
+    background: rgb(226, 226, 226);
+}
+
+.card label {
+    font-weight: bold;
+    color: rgb(99, 99, 99);
+}
+
+.card-list-quiz {
+    height: 90vh;
+}
+
+.table-list-candidate {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4)
+}

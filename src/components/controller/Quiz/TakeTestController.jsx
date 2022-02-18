@@ -1,0 +1,54 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
+import { apiQuiz } from '../../../api/apiConnect';
+import TakeTestView from '../../views/QuizManage/TakeTestView';
+
+const TakeTest = () => {
+    const [listQuiz, setListQuiz] = React.useState([]);
+    const [listQuizDone, setListQuizDone] = React.useState([]);
+    const id = sessionStorage.getItem('id');
+    // GET quiz notstart
+    const getQuizNotStartWithUser = () => {
+        apiQuiz
+            .get(`/quiz/notstart/${id}`)
+            .then((res) => {
+                setListQuiz(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+    // GET quiz finished
+    const getQuizFinishWithUser = () => {
+        apiQuiz
+            .get(`/quiz/listbyuser/${id}`)
+            .then((res) => {
+                setListQuizDone(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+    React.useEffect(() => {
+        getQuizNotStartWithUser();
+        getQuizFinishWithUser();
+    }, []);
+
+    return <TakeTestView listQuiz={listQuiz} listQuizDone={listQuizDone} />;
+    // if (listQuiz.length > 0) {
+    //     return listQuiz.map((test) => (
+    //         <div key={test.id}>
+    //             <TakeTestView test={test} />
+    //         </div>
+    //     ));
+    // } else
+    //     return (
+    //         <div className='page__out'>
+    //             <div className='page__in'>
+    //                 <div style={{ height: '80vh' }}>
+    //                     <p className='text-info'>
+    //                         <b>Hiện tại bạn chưa có bài Quiz nào cần làm!</b>
+    //                     </p>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+};
+
+export default TakeTest;

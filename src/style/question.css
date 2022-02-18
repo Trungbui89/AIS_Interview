@@ -1,0 +1,15 @@
+.button-active {
+    border: none;
+    background: none;
+    border-bottom: 3px solid rgb(21, 122, 117);
+    transition: 0.5s all;
+}
+
+.question-list>div {
+    border-top: 3px solid rgb(36, 184, 204);
+    background: rgb(248, 244, 244);
+}
+
+.question-list span {
+    font-size: 12px;
+}
