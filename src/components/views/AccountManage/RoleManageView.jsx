@@ -199,9 +199,9 @@ const RoleManageView = (props) => {
             </tr>
         ));
     return (
-        <div className='page__out'>
-            <div className='page__in'>
-                <div className='container card__list-test'>
+        <div>
+            <div style={{fontFamily: "Quicksand"}}>
+                <div className='card__list-test'>
                     <div className='card__header row'>
                         <h3 className=''>Role Management</h3>
                     </div>

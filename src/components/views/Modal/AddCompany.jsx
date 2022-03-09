@@ -15,9 +15,9 @@ export default function AddCompany(props) {
         props.postAddCompany(info)
     }
     return (
-        <Modal show={props.show}>
+        <Modal show={props.show} centered size='lg'>
             <Modal.Header>
-                Information Company
+                <b>Information Company</b>
                 <button onClick={props.toggleModalAdd} className='btn'>
                     <i className='fa fa-times fa-2x text-danger'></i>
                 </button>

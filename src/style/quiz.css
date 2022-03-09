@@ -12,6 +12,10 @@
     height: 90vh;
 }
 
-.table-list-candidate {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4)
+/* .table-list-candidate{
+    width: 100%;
 }
+.table-list-candidate tr {
+    border-bottom: 1px solid rgb(189, 189, 189);
+} */
+

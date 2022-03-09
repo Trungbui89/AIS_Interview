@@ -27,7 +27,7 @@ export default function ListQuestion(props) {
                     <div className='row'>
                         <div className='col-6'>
                             <p className='font-weight-bold text-left'>
-                                {qt.content}
+                                Q{idx + 1}: {qt.content}
                             </p>
                         </div>
                         <div className='col-4'>
@@ -64,7 +64,7 @@ export default function ListQuestion(props) {
                     </div>
                 </div>
             ));
-        } else return <p className='m-auto'>Select a Category!</p>;
+        } else return <p className='m-auto'>Chọn 1 Category!</p>;
     };
     return (
         <div className='mt-2'>

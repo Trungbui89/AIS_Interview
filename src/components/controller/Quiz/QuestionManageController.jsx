@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { apiQuiz } from '../../../api/apiConnect';
+import { toastFail, toastSuccess } from '../../../helper/Notification/utils';
 import QuestionManageView from '../../views/QuizManage/QuestionManageView';
 
 const QuestionManage = () => {
-    const [addFailed, setAddFailed] = useState(false);
-    const [addSuccess, setAddSuccess] = useState(false);
     // const token = sessionStorage.getItem('token');
 
     // GET ALL CATEGORY
@@ -58,13 +57,13 @@ const QuestionManage = () => {
         apiQuiz
             .post('/quiz/createCategory', value)
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Tạo Category thành công');
                 toggleCreateCateModal();
                 getAllCategories();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     //POST CREATE NOMINEE
@@ -76,13 +75,13 @@ const QuestionManage = () => {
         apiQuiz
             .post('/quiz/createnominee', value)
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Tạo Nominee thành công');
                 toggleCreateNomineeModal();
                 getAllNominee();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Lỗi! Vui lòng kiểm tra lại');
             });
     };
     // POST CREATE QUESTION
@@ -94,13 +93,13 @@ const QuestionManage = () => {
         apiQuiz
             .post('/quiz/createquestion', value)
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Tạo câu hỏi thành công');
                 toggleCreateQuestion();
                 getQuesByCate(value.category.id);
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Lỗi! Vui lòng kiểm tra lại');
             });
     };
     // GET QUESTION BY CATEGORY
@@ -125,10 +124,6 @@ const QuestionManage = () => {
             createCateModal={createCateModal}
             toggleCreateCateModal={toggleCreateCateModal}
             postCreateCategory={postCreateCategory}
-            addSuccess={addSuccess}
-            setAddSuccess={setAddSuccess}
-            addFailed={addFailed}
-            setAddFailed={setAddFailed}
             categories={categories}
             nominees={nominees}
             createNomineeModal={createNomineeModal}

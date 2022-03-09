@@ -6,10 +6,7 @@ import StaffListView from '../../views/AccountManage/StaffListView';
 const StaffList = ({ setLoading }) => {
     const token = sessionStorage.getItem('token');
     const [staffs, setStaffs] = useState([]);
-    const [staffResult, setStaffResult] = useState(staffs);
-    const [addFailed, setAddFailed] = useState(false);
-    const [addSuccess, setAddSuccess] = useState(false);
-    // GET STAFFS
+    const [staffResult, setStaffResult] = useState(staffs);    // GET STAFFS
     const getAllStaffs = () => {
         apiAcc
             .get('/accounts/list', {
@@ -27,28 +24,6 @@ const StaffList = ({ setLoading }) => {
     useEffect(() => {
         getAllStaffs();
     }, []);
-    // POST add staff
-    // const [addModal, setAddModal] = useState(false)
-    // const toggleAddStaffModal = () => {
-    //     setAddModal(!addModal);
-    // }
-    // const postAddStaff = (staff) => {
-    //     apiAcc
-    //         .post('/accounts', staff, {
-    //             headers: { 
-    //                 authorization: `Bearer ${token}` 
-    //             },
-    //         })
-    //         .then((res) => {
-    //             setAddSuccess(true);
-    //             setStaffs([...staffs, staff]);
-    //             toggleAddStaffModal()
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setAddFailed(true);
-    //         });
-    // };
     // SEARCH
     const searchStaff = (values) => {
         const sName = values;
@@ -79,10 +54,6 @@ const StaffList = ({ setLoading }) => {
             getAllStaffs={getAllStaffs}
             searchStaff={searchStaff}
             setLoading={setLoading}
-            addFailed={addFailed}
-            setAddFailed={setAddFailed}
-            addSuccess={addSuccess}
-            setAddSuccess={setAddSuccess}
         />
     );
 };

@@ -18,16 +18,16 @@ export default function AddPermissions(props) {
         props.toggleAddPer();
     };
     return (
-        <Modal show={props.showAddPer}>
+        <Modal centered show={props.showAddPer}  onHide={props.toggleAddPer}>
             <Modal.Header>
-                Allow ?
+                <b>Allow permission</b>
                 <button
                     className='btn '
                     onClick={() => {
                         props.toggleAddPer();
                     }}
                 >
-                    <i className='fa fa-times fa-2x text-danger'></i>
+                    <i className='fa fa-times fa-2x'></i>
                 </button>
             </Modal.Header>
             <Modal.Body>

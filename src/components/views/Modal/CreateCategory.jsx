@@ -8,9 +8,9 @@ export default function CreateCategory(props) {
         props.postCreateCategory(cateName);
     };
     return (
-        <Modal show={props.createCateModal}>
+        <Modal centered show={props.createCateModal}>
             <Modal.Header>
-                Create a new category
+                Tạo mới category
                 <button
                     onClick={() => {
                         props.toggleCreateCateModal();

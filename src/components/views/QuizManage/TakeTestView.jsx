@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ResultQuiz from '../Modal/QuizModal/ResultQuiz';
 
-const TakeTestView = ({ listQuiz, listQuizDone }) => {
+const TakeTestView = ({
+    listQuiz,
+    listQuizDone,
+    showResult,
+    toggleShowResult,
+}) => {
     const RenderQuizDone = () => {
         if (listQuizDone.length > 0) {
             return listQuizDone.map((done, idx) => (
@@ -16,20 +22,26 @@ const TakeTestView = ({ listQuiz, listQuizDone }) => {
                             Quantity question:{' '}
                             <i className='text-info'>{done.numberQuestions}</i>
                             <br />
-                            <Link to={`/list-test/take-quiz/start/${done.id}`}>
-                                <button className='btn btn-info mt-2'>
-                                    View Result
-                                </button>
-                            </Link>
+                            <button
+                                onClick={toggleShowResult}
+                                className='btn btn-info mt-2'
+                            >
+                                View Result
+                            </button>
                         </p>
                     </div>
+                    <ResultQuiz
+                        showResult={showResult}
+                        toggleShowResult={toggleShowResult}
+                        quizDone={done}
+                    />
                 </div>
             ));
         } else
             return (
                 <div style={{ height: '80vh' }}>
-                    <p className='text-info my-3'>
-                        <b>Hiện tại bạn chưa hoàn thành bài Test nào!!</b>
+                    <p className='my-3'>
+                        <i>Hiện tại bạn chưa hoàn thành bài Test nào!!</i>
                     </p>
                 </div>
             );
@@ -61,8 +73,8 @@ const TakeTestView = ({ listQuiz, listQuizDone }) => {
         } else
             return (
                 <div style={{ height: '80vh' }}>
-                    <p className='text-info my-3'>
-                        <b>Hiện tại bạn chưa có bài Quiz nào cần làm!</b>
+                    <p className='my-3'>
+                        <i>Hiện tại bạn chưa có bài Test nào cần làm!</i>
                     </p>
                 </div>
             );
@@ -71,17 +83,17 @@ const TakeTestView = ({ listQuiz, listQuizDone }) => {
     return (
         <div className='page__out'>
             <div className='page__in'>
-                <div className='container card__list-test'>
+                <div className='card__list-test'>
                     <div className='card__header'>
-                        <h3 className=''>Over View quiz</h3>
+                        <h3 className=''>Overview Test</h3>
                     </div>
                     <div className='row'>
-                        <div className='col-6 my-2'>
-                            <b className='text-primary '>Quiz Not Start yet</b>
+                        <div className='col-6 my-2 quiz-not-start'>
+                            <b className='text-primary '>Chưa bắt đầu</b>
                             <RenderQuizNotStart />
                         </div>
                         <div className='col-6 my-2'>
-                            <b className='text-success'>Quiz Finished</b>
+                            <b className='text-success'>Đã hoàn thành</b>
                             <RenderQuizDone />
                         </div>
                     </div>

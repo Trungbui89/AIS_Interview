@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { apiQuiz } from '../../../api/apiConnect';
+import { toastFail, toastSuccess } from '../../../helper/Notification/utils';
 import QuizManageView from '../../views/QuizManage/QuizManageView';
 
 export default function QuizManage() {
-    const [addFailed, setAddFailed] = React.useState(false);
-    const [addSuccess, setAddSuccess] = React.useState(false);
+    // const [addFailed, setAddFailed] = React.useState(false);
+    // const [addSuccess, setAddSuccess] = React.useState(false);
     // const token = sessionStorage.getItem('token')
     const [showCreateQuiz, setShowCreateQuiz] = React.useState(false);
     const toggleModalCreate = () => {
@@ -30,18 +31,15 @@ export default function QuizManage() {
     const postCreateQuiz = (value) => {
         console.log(value);
         apiQuiz.post('/quiz', value).then(res => {
-            setAddSuccess(true);
+            toastSuccess('Tạo bài Test thành công');
         }).catch(err => {
             console.log(err);
-            setAddFailed(true)
+            toastFail('Thất bại, vui lòng kiểm tra lại')
         });
     };
+
     return (
         <QuizManageView
-            addSuccess={addSuccess}
-            setAddSuccess={setAddSuccess}
-            addFailed={addFailed}
-            setAddFailed={setAddFailed}
             showCreateQuiz={showCreateQuiz}
             toggleModalCreate={toggleModalCreate}
             categories={categories}

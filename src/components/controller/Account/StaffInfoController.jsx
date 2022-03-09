@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiAcc, apiCandidate } from '../../../api/apiConnect';
+import { toastFail, toastSuccess } from '../../../helper/Notification/utils';
 import StaffInfoView from '../../views/AccountManage/StaffInfoView';
 
 function StaffInfo() {
@@ -113,13 +114,13 @@ function StaffInfo() {
                 },
             })
             .then((res) => {
+                toastSuccess('Cập nhật thông tin thành công');
                 getStaffWithId();
-                setAddSuccess(true);
                 setCanEdit(false);
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     // POST ADD ROLE To USER
@@ -135,13 +136,13 @@ function StaffInfo() {
                 },
             })
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Thêm Role thành công');
                 getRoleHaveInUser();
                 getRoleNotInUser();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     // DELETE USER ROLE
@@ -154,13 +155,13 @@ function StaffInfo() {
                 data: { roleId: value, username: staff.username },
             })
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Xóa Role thành công');
                 getRoleHaveInUser();
                 getRoleNotInUser();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     //POST ADD PERMISSION TO USER
@@ -185,14 +186,14 @@ function StaffInfo() {
                 },
             })
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Thêm Permission thành công');
                 toggleAddPer();
                 getPerInUser();
                 getPerNotInUser();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     //DELETE USER PERMISSION
@@ -205,13 +206,13 @@ function StaffInfo() {
                 data: { roleId: value, username: staff.username },
             })
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Đã xóa Permission thành công');
                 getPerInUser();
                 getPerNotInUser();
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     // CHANGE PASS FOR USER (only ADMIN)
@@ -232,12 +233,12 @@ function StaffInfo() {
                 },
             })
             .then(res => {
-                setAddSuccess(true);
+                toastSuccess('Đổi mật khẩu thành công');
                 toggleModalPassChange()
             })
             .catch((err) => {
                 console.log(err);
-                setAddFailed(true);
+                toastFail('Thất bại, vui lòng kiểm tra lại');
             });
     };
     if (staff) {

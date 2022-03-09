@@ -88,6 +88,7 @@ export default function EditStaffInfo({ staff, postUpdateStaff, setCanEdit }) {
                                 <select
                                     className='form-control'
                                     type='select'
+                                    value={updateStaff.userType}
                                     onChange={(e) => {
                                         setUpdateStaff({
                                             ...updateStaff,
@@ -96,7 +97,7 @@ export default function EditStaffInfo({ staff, postUpdateStaff, setCanEdit }) {
                                     }}
                                 >
                                     <option value=''> </option>
-                                    <option value='NV'>Employee</option>
+                                    <option value='Cand'>Candidate</option>
                                     <option value='HR'>HR</option>
                                     <option value='ADMIN'>ADMIN</option>
                                 </select>

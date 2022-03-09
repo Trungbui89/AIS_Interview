@@ -6,6 +6,10 @@ import TakeTestView from '../../views/QuizManage/TakeTestView';
 const TakeTest = () => {
     const [listQuiz, setListQuiz] = React.useState([]);
     const [listQuizDone, setListQuizDone] = React.useState([]);
+    const [showResult, setShowResult] = React.useState(false);
+    const toggleShowResult = () => {
+        setShowResult(!showResult);
+    };
     const id = sessionStorage.getItem('id');
     // GET quiz notstart
     const getQuizNotStartWithUser = () => {
@@ -30,7 +34,14 @@ const TakeTest = () => {
         getQuizFinishWithUser();
     }, []);
 
-    return <TakeTestView listQuiz={listQuiz} listQuizDone={listQuizDone} />;
+    return (
+        <TakeTestView
+            listQuiz={listQuiz}
+            listQuizDone={listQuizDone}
+            showResult={showResult}
+            toggleShowResult={toggleShowResult}
+        />
+    );
     // if (listQuiz.length > 0) {
     //     return listQuiz.map((test) => (
     //         <div key={test.id}>

@@ -61,10 +61,18 @@ export default function CompanyManage() {
     //PUT EDIT COMPANY
     const [canEdit, setCanEdit] = useState(false);
     const putEditCompany = (value) => {
+        let formData = new FormData(); 
+        formData.append('image', value.image);
+        formData.append('name',value.name);
+        formData.append('shortCutName',value.shortCutName);
+        formData.append('email',value.email);
+        formData.append('phone',value.phone);
+        formData.append('address',value.address);
         apiAcc
-            .put('/company', value, {
+            .put('/company', formData, {
                 headers: {
                     authorization: 'Bearer ' + token,
+                    'content-type': 'multipart/form-data'
                 },
             })
             .then((res) => {    
