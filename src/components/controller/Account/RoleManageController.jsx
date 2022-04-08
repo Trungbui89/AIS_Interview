@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import RoleManageView from '../../views/AccountManage/RoleManageView';
 import { apiAcc } from '../../../api/apiConnect';
+import {toastSuccess,  toastFail } from '../../../helper/Notification/utils'
 
 export default function RoleManage() {
     const token = sessionStorage.getItem('token');
@@ -44,12 +45,12 @@ export default function RoleManage() {
                 },
             })
             .then((res) => {
-                setAddSuccess(true);
+                toastSuccess('Thêm role mới thành công!');
                 getAllRole();
                 toggleAddRoleModal();
             })
             .catch((err) => {
-                setAddFailed(true);
+                toastFail('Lỗi! Vui lòng thử lại');
                 console.log(err);
             });
     };

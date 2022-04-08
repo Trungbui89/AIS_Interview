@@ -31,7 +31,6 @@ const CreateQuestion = (props) => {
     },
     questionChoice: [],
   });
-  console.log(choiceA, choiceB, choiceC, choiceD);
   const checkChoiceNull = () => {
     if (
       choiceA.name === "" ||

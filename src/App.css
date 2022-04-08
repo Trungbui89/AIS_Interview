@@ -551,10 +551,9 @@ table {
 
 .list-test__content {
     width: 100%;
-    margin: auto;
     background: rgb(255, 255, 255);
     height: auto;
-    box-shadow: 10px rgb(20, 20, 20);
+    border: 1px solid #000;
 }
 
 .card__test {

@@ -1,22 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import AddFailed from "../Modal/AddFailed";
-import AddSuccess from "../Modal/AddSuccess";
 import CreateCategory from "../Modal/CreateCategory";
 import CreateNominee from "../Modal/CreateNominee";
 import CreateQuestion from "../Modal/QuizModal/CreateQuestion";
 import EditQuestion from "../Modal/QuizModal/EditQuestion";
 import ListQuestion from "./ListQuestion";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import { ToastContainer } from "react-toastify";
 
 const QuestionManageView = (props) => {
   const [question, setQuestion] = useState({});
+  const [cateId, setCateId] = React.useState("");
   const RenderCategory = () =>
-    props.categories.map((cate) => (
-      <tr key={cate.id}>
-        <td>{cate.name}</td>
-      </tr>
+    props.categories?.map((cate) => (
+      <li
+        key={cate.id}
+        className={cateId === cate.id ? "button-cate-active" : "button-cate"}
+        onClick={() => {
+          setCateId(cate.id);
+          props.getQuesByCate(cate.id);
+        }}
+      >
+        {cate.name}
+      </li>
     ));
   const RenderNominee = () =>
     props.nominees.map((nominee) => (
@@ -24,11 +28,16 @@ const QuestionManageView = (props) => {
         <td>{nominee.name}</td>
       </tr>
     ));
+  const returnQuesTypeName = (name) =>{
+    if(name === 'ONE_CHOICE') return 'One choice';
+    if(name === 'MANY_CHOICE') return 'Many choices';
+    if(name === 'FREE_TEXT') return 'Free text';
+  }
   const RenderQuestionType = () =>
-    props.quesTypes.map((qt) => (
-      <tr key={qt.name}>
-        <td>{qt.name}</td>
-      </tr>
+    props.quesTypes.map((qt, idx) => (
+      <li key={idx} className="list-question-type">
+        {returnQuesTypeName(qt?.name)}
+      </li>
     ));
   return (
     <div>
@@ -38,30 +47,25 @@ const QuestionManageView = (props) => {
             <h3 className="">Question Management</h3>
           </div>
           <div className="list-test__content row mt-5">
-            <div className="col-3">
-              <div className="col-12">
-                <table className="table">
-                  <thead className="thead-light">
-                    <tr>
-                      <th>List Category</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <RenderCategory />
-                    <tr>
-                      <td>
-                        <button
-                          onClick={() => {
-                            props.toggleCreateCateModal();
-                          }}
-                          className="btn btn-outline-primary"
-                        >
-                          Tạo Category
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div className="col-2">
+              <div className="title-cate">
+                <img src="/icon/Topics.svg" alt="" /> Topics
+              </div>
+              <div>
+                <ul style={{ listStyleType: "none" }}>
+                  <RenderCategory />
+                  <div className="text-left">
+                    <button
+                      onClick={() => {
+                        props.toggleCreateCateModal();
+                      }}
+                      className="btn text-primary"
+                    >
+                      <img src='/icon/New.svg' alt='' /> {' '}
+                      Tạo Category
+                    </button>
+                  </div>
+                </ul>
               </div>
               {/* <div className='col-12'>
                 <table className='table'>
@@ -87,50 +91,23 @@ const QuestionManageView = (props) => {
                     </tbody>
                 </table>
             </div> */}
-              <div className="col-12">
-                <table className="table">
-                  <thead className="thead-light">
-                    <tr>
-                      <th>List Question Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <RenderQuestionType />
-                  </tbody>
-                </table>
+              <div className="title-cate">
+                <img src="/icon/QuestionType.svg" alt="" /> Type of question
+              </div>
+              <div className="">
+                <ul style={{ listStyleType: "none" }}>
+                  <RenderQuestionType />
+                </ul>
               </div>
             </div>
-            <div className="col-9 border">
-              <div
-                className="row"
-                style={{ boxShadow: "0 0 6px rgb(0, 0, 0, 0.5)" }}
-              >
-                <h4 className="p-1 mx-auto" style={{color:'#161e54'}}>Danh sách câu hỏi</h4>
-              </div>
-              <div className="row">
-                <div className="col-3 mt-2">
-                  <button
-                    onClick={props.toggleCreateQuestion}
-                    className="btn btn-outline-success"
-                  >
-                    <i className="fa fa-plus"></i> Tạo câu hỏi
-                  </button>
-                </div>
-                <div className="col-6"></div>
-                <div className="col-3 mt-2">
-                  <Link to="/quiz/create/quiz">
-                    <button className="btn btn-outline-primary">
-                      Tạo bài Test <ArrowCircleRightIcon />
-                    </button>
-                  </Link>
-                </div>
-              </div>
+            <div className="col-10 border">
               <ListQuestion
                 questions={props.questions}
                 getQuesByCate={props.getQuesByCate}
                 categories={props.categories}
                 toggleEditQues={props.toggleEditQues}
                 setQuestion={setQuestion}
+                toggleCreateQuestion={props.toggleCreateQuestion}
               />
             </div>
           </div>
@@ -159,6 +136,7 @@ const QuestionManageView = (props) => {
         question={question}
         categories={props.categories}
         quesTypes={props.quesTypes}
+        putUpdateQuestion={props.putUpdateQuestion}
       />
       <ToastContainer />
     </div>

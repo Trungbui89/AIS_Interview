@@ -1,8 +1,32 @@
-.button-active {
+.button-cate-active {
+    background: #DCE0FE;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+}
+
+.button-cate {
     border: none;
     background: none;
-    border-bottom: 3px solid rgb(21, 122, 117);
-    transition: 0.5s all;
+    padding: 10px;
+    text-align: left;
+}
+
+.button-cate:hover {
+    background: rgb(236, 255, 255);
+}
+
+.list-question-type {
+    text-align: left;
+    padding: 5px 0;
+}
+
+.title-cate {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 0;
 }
 
 .question-list>div {
@@ -12,4 +36,29 @@
 
 .question-list span {
     font-size: 12px;
+}
+
+.row-column {
+    width: 100%;
+}
+
+.column-1 {
+    width: 5%;
+}
+
+.column-2 {
+    width: 25%;
+}
+
+.column-3 {
+    width: 15%;
+}
+
+.column-4 {
+    width: 50%;
+}
+
+.column-5 {
+    width: 5%;
+    text-align: center;
 }

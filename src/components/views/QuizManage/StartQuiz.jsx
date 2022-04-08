@@ -7,6 +7,7 @@ import { apiQuiz } from "../../../api/apiConnect";
 import { toastFail, toastSuccess } from "../../../helper/Notification/utils";
 
 export default function StartQuiz(props) {
+  const token = sessionStorage.getItem('token')
   const navigate = useNavigate();
   const [quizDetail, setQuizDetail] = React.useState({});
   const [timeCount, setTimeCount] = React.useState(0);
@@ -15,7 +16,7 @@ export default function StartQuiz(props) {
   //GET QUIZ DETAIL
   const getQuizDetail = () => {
     apiQuiz
-      .get(`/quiz/${id}`)
+      .get(`/quiz/${id}`, {headers: { Authorization: token }})
       .then((res) => {
         setQuizDetail(res.data);
         setTimeCount(res.data.quizTime * 60);
@@ -31,7 +32,7 @@ export default function StartQuiz(props) {
   const [showQuiz, setShowQuiz] = React.useState(false);
   const getStartQuiz = () => {
     apiQuiz
-      .get(`/quiz/startquiz/${id}`)
+      .get(`/quiz/startquiz/${id}`, {headers: { Authorization: token }})
       .then((res) => {
         setQuiz(res.data);
       })
@@ -90,15 +91,20 @@ export default function StartQuiz(props) {
   const choiceCheck = answer.map((a) => a.questionChoiceDTOs[0].id);
   console.log(answer);
 
-  const postSubmitAnswer =() =>{
-    apiQuiz.post('/quiz/calculate').then(res => {
-      toastSuccess('Gửi câu trả lời thành công')
-      navigate('/list-test/take-quiz', {replace: true});
-    }).catch(err => {
-      console.log(err);
-      toastFail('Lỗi! Vui lòng kiểm tra lại')
-    });
-  }
+  const postSubmitAnswer = () => {
+    apiQuiz
+      .post("/quiz/calculate", answer, {headers:{ Authorization: token }})
+      .then((res) => {
+        toastSuccess("Gửi câu trả lời thành công");
+        setTimeout(() => {
+          navigate("/list-test/take-quiz", { replace: true });
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+        toastFail("Lỗi! Vui lòng kiểm tra lại");
+      });
+  };
   const RenderChoiceOfQuestion = (props) => {
     const { ques } = props;
     return ques?.questionChoiceDTOs.map((choice, idx) => (
@@ -149,16 +155,20 @@ export default function StartQuiz(props) {
   };
   return (
     <div className="py-3">
-      <div style={{fontFamily: "Quicksand"}}>
+      <div style={{ fontFamily: "Quicksand" }}>
         <h3>{quizDetail.description}</h3>
         {timeCount > 0 ? (
           <TimeOut timeCount={timeCount} setShowQuiz={setShowQuiz} />
         ) : null}
-        <div className="p-4 card" style={{width:'90%', margin:'auto'}}>
+        <div className="p-4 card" style={{ width: "90%", margin: "auto" }}>
           {showQuiz === true ? (
             <>
               <RenderQuestion />
-              <button onClick={postSubmitAnswer} className='button-user' style={{width:'100px', margin:'20px auto'}}>
+              <button
+                onClick={postSubmitAnswer}
+                className="button-user"
+                style={{ width: "100px", margin: "20px auto" }}
+              >
                 Submit
               </button>
             </>

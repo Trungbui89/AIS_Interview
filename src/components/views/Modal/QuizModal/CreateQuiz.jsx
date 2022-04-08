@@ -55,7 +55,7 @@ export default function CreateQuiz(props) {
             />
             <div className='card'>
                 <div className='card-header text-justify'>
-                    <b className='text-info'>Create a new quiz</b>
+                    <b className='form_add'>Tạo bài Test</b>
                     <button className='btn' onClick={props.toggleModalCreate}>
                         <i className='fa fa-times fa-2x text-danger'></i>
                     </button>
@@ -65,12 +65,13 @@ export default function CreateQuiz(props) {
                         <div className='container'>
                                 <div className='col-12'>
                                     <div className='form-group text-center'>
-                                        <label>Quiz - Description</label>
+                                        <label>Tên bài Test</label>
                                         <input
                                             type='text'
                                             className='form-control'
                                             placeholder='Enter description for this Quiz'
                                             value={quizInput.quiz.description}
+                                            required
                                             onChange={(e) => {
                                                 setQuizInput({
                                                     ...quizInput,
@@ -87,7 +88,7 @@ export default function CreateQuiz(props) {
                             <div className='row'>
                                 <div className='col-4'>
                                     <div className='form-group text-center'>
-                                        <label>Select Candidate for Quiz</label>
+                                        <label>Chọn ứng viên thực hiện</label>
                                         <select
                                             onClick={() => {
                                                 toggleModalUser();
@@ -111,7 +112,7 @@ export default function CreateQuiz(props) {
                                 </div>
                                 <div className='col-4'>
                                     <div className='form-group text-center'>
-                                        <label>Start Time</label>
+                                        <label>Thời gian mở</label>
                                         <input
                                             className='form-control'
                                             type='datetime-local'
@@ -131,7 +132,7 @@ export default function CreateQuiz(props) {
                                 </div>
                                 <div className='col-4'>
                                     <div className='form-group text-center'>
-                                        <label>Expired Time</label>
+                                        <label>Thời gian đóng</label>
                                         <input
                                             className='form-control'
                                             type='datetime-local'
@@ -170,7 +171,7 @@ export default function CreateQuiz(props) {
                                         </select>
                                     </div>
                                     <div className='form-group'>
-                                        <label>Quantity</label>
+                                        <label>Số lượng câu hỏi</label>
                                         <input
                                             type='number'
                                             className='form-control'
@@ -205,7 +206,7 @@ export default function CreateQuiz(props) {
                                         </select>
                                     </div>
                                     <div className='form-group'>
-                                        <label>Quantity</label>
+                                        <label>Số lượng câu hỏi</label>
                                         <input
                                             type='number'
                                             className='form-control'
@@ -240,7 +241,7 @@ export default function CreateQuiz(props) {
                                         </select>
                                     </div>
                                     <div className='form-group'>
-                                        <label>Quantity</label>
+                                        <label>Số lượng câu hỏi</label>
                                         <input
                                             type='number'
                                             className='form-control'
@@ -259,8 +260,8 @@ export default function CreateQuiz(props) {
                             <div className='text-center my-3'>
                                 <input
                                     type='submit'
-                                    className='btn btn-outline-success'
-                                    value='Send'
+                                    className='button-user'
+                                    value='Tạo'
                                 />
                             </div>
                         </div>
