@@ -1,0 +1,16 @@
+test:
+  stage: test
+  script: echo "Running tests"
+
+build:
+  stage: build
+  script: echo "Building the app"
+
+deploy_develop:
+  stage: deploy
+  script:
+    - echo "Deploy to develop environment"
+  environment:
+    name: develop
+  only:
+  - develop

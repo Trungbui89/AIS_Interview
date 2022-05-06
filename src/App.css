@@ -5,7 +5,6 @@
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
 @import url(./style/question.css);
 @import url(./style/quiz.css);
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100;200;300;400;500;600;700;800&display=swap');
 /* @import './' */
 
@@ -468,7 +467,6 @@ nav ul li a {
     height: auto;
     background: rgb(255, 255, 255);
     padding: 0 2%;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) */
 }
 
 .card__header {
@@ -553,7 +551,6 @@ table {
     width: 100%;
     background: rgb(255, 255, 255);
     height: auto;
-    border: 1px solid #000;
 }
 
 .card__test {
@@ -923,10 +920,6 @@ table input:focus {
 .tbl__role thead {
     background: #1b3e74;
     color: #f0f0f0;
-}
-
-.quiz-not-start{
-    border-right: 1px solid rgb(197, 197, 197);
 }
 
 /* COMPANY MANAGE */

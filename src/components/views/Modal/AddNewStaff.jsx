@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { ToastContainer } from "react-toastify";
 import { apiAcc } from "../../../api/apiConnect";
 import { toastFail, toastSuccess } from "../../../helper/Notification/utils";
 
@@ -20,6 +19,7 @@ function AddNewStaff(props) {
     userType: "",
     username: "",
     password: "",
+    birthDay: "",
     company: {
       id: sessionStorage.getItem("company"),
     },
@@ -106,6 +106,23 @@ function AddNewStaff(props) {
                   />
                 </div>
                 <div className="form-group">
+                  <label>Ngày sinh</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={newStaff.birthDay}
+                    onChange={(e) => {
+                      setNewStaff({
+                        ...newStaff,
+                        birthDay: e.target.value,
+                      });
+                    }}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-6">
+              <div className="form-group">
                   <label>Email</label>
                   <input
                     type="email"
@@ -121,8 +138,6 @@ function AddNewStaff(props) {
                     required
                   />
                 </div>
-              </div>
-              <div className="col-6">
                 <div className="form-group">
                   <label>Địa chỉ</label>
                   <input
@@ -202,7 +217,6 @@ function AddNewStaff(props) {
           </form>
         </div>
       </Modal.Body>
-      <ToastContainer />
     </Modal>
   );
 }

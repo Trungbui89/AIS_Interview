@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Slide, toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const MsgSuccess = ({ message }) => {
   return (

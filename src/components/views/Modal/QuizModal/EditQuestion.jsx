@@ -25,7 +25,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { toastFail } from "../../../../helper/Notification/utils";
-import { ToastContainer } from "react-toastify";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -221,7 +220,6 @@ export default function EditQuestion(props) {
       putUpdateQuestion(questionSubmit);
     }
   };
-  console.log(questionSubmit);
   return (
     <BootstrapDialog
       onClose={toggleEditQues}
@@ -404,7 +402,6 @@ export default function EditQuestion(props) {
           Lưu
         </Button>
       </DialogActions>
-      <ToastContainer />
     </BootstrapDialog>
   );
 }
